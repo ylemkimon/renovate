@@ -100,6 +100,8 @@ export async function generateLockFile(
         '--ignore-engines --ignore-platform --network-timeout 100000';
     } else {
       extraEnv.YARN_HTTP_TIMEOUT = '100000';
+      // allow the lockfile to be updated
+      extraEnv.YARN_ENABLE_IMMUTABLE_INSTALLS = '0';
     }
     if (getAdminConfig().trustLevel !== 'high' || config.ignoreScripts) {
       if (isYarn1) {
